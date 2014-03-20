@@ -227,7 +227,7 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
     if (self.validatesDomainName) {
         [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, (__bridge CFStringRef)domain)];
     } else {
-        [policies addObject:(__bridge_transfer id)SecPolicyCreateBasicX509()];
+        [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, NULL)];
     }
 
     SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);
